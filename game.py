@@ -6,7 +6,6 @@ import random
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG)
 
-
 SCREEN_SIZE = (600, 600)
 
 

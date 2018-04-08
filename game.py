@@ -92,11 +92,19 @@ class Controller():
                    ((pyth_y - self.rocket.half_side + 2) ** 2) <
                    stone.radius ** 2):
                     self.game_state = Controller.GAMEOVER
-
+                if (pyth_y < (stone.radius + self.rocket.half_side) and
+                    (self.rocket.x - self.rocket.half_side) < stone.x <
+                    (self.rocket.x + self.rocket.half_side)):
+                    self.game_state = Controller.GAMEOVER
+                if (pyth_x < (stone.radius + self.rocket.half_side) and
+                    (self.rocket.y - self.rocket.half_side) < stone.y <
+                    (self.rocket.y + self.rocket.half_side)):
+                    self.game_state = Controller.GAMEOVER
+                    
             # -- Diamonds! --------------------------------------------------
             # x2 for easier capture
-            if (abs(self.rocket.x - self.diamonds.x) < 2 * self.diamonds.size and
-                abs(self.rocket.y - self.diamonds.y) < 2 * self.diamonds.size):
+            if (abs(self.rocket.x - self.diamonds.x) < self.diamonds.size + self.rocket.half_side and
+                abs(self.rocket.y - self.diamonds.y) < self.diamonds.size + self.rocket.half_side):
                 self.diamond_count += 1
                 self.diamonds.restart()
 
